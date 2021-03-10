@@ -1,0 +1,80 @@
+.genres {
+  height: 100%;
+  margin-top: 2rem;
+}
+.genres > h2 {
+  font-weight: 600;
+  font-family: "Lato", Arial, Helvetica, sans-serif;
+  font-size: 1.8rem;
+  margin-top: 0.5rem;
+}
+.genres__row {
+  display: flex;
+  overflow: scroll hidden;
+}
+.genres__card::before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  position: absolute;
+  opacity: 0.6;
+}
+
+.genres__card {
+  position: relative;
+  transition: transform 0.5s ease;
+  display: flex;
+  justify-content: center;
+  width: 14rem;
+  height: 9rem;
+  flex-shrink: 0;
+  margin: 0 0.4rem;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: rgba(26, 25, 25, 0.7);
+}
+.genres__card:first-child {
+  margin-left: 0;
+}
+.genres__card:last-child {
+  margin-right: 0;
+}
+.genres__card:hover {
+  transform: scale(1.08);
+}
+.genres__card > img {
+  height: 100%;
+  width: 100%;
+}
+
+.genres__name {
+  color: #fff;
+  font-size: 1.3rem;
+  margin: 0;
+  position: absolute;
+  align-self: center;
+  text-align: center;
+}
+
+@media screen and (max-width: 786px) {
+  .genres > h2 {
+    font-size: 1.5rem;
+  }
+  .genres__name {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .genres > h2 {
+    font-size: 1.2rem;
+  }
+  .genres__card {
+    width: 13rem;
+    height: 8rem;
+  }
+  .genres__name {
+    font-size: 1.1rem;
+  }
+}

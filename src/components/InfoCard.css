@@ -1,0 +1,40 @@
+.infoCard {
+  height: 22rem;
+  width: 18rem;
+  background: rgba(20, 20, 20, 0.445);
+  overflow: hidden;
+  border-radius: 3px;
+  margin: 1rem 0;
+  cursor: pointer;
+}
+
+.infoCard > a {
+  display: contents;
+  text-decoration: none;
+}
+.infoCard > a > img {
+  height: 80%;
+  width: 100%;
+}
+
+.infoCard > a > p {
+  text-align: center;
+  font-family: "Lato", Arial, Helvetica, sans-serif;
+  color: #fff;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 786px) {
+  .infoCard {
+    height: 20rem;
+    width: 13rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .infoCard {
+    height: 22rem;
+    width: 100%;
+  }
+}

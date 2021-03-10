@@ -1,0 +1,25 @@
+.footer {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  min-height: 30vh;
+  margin-top: 2rem;
+  background-color: rgba(24, 24, 24, 0.05);
+}
+
+.footer > p {
+  color: #fff;
+  align-self: flex-end;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+.footer > p > span {
+  color: red;
+  font-size: 1.2rem;
+}
+@media screen and (max-width: 500px) {
+  .footer {
+    min-height: 20vh;
+  }
+}

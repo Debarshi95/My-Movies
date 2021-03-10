@@ -1,0 +1,108 @@
+.bannerCarousel {
+  height: 100%;
+  height: 80vh;
+  position: relative;
+}
+.bannerCarousel__card::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.6;
+}
+.bannerCarousel__card {
+  width: 100%;
+  height: 80vh;
+}
+.bannerCarousel__card > img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+.carousel .slide {
+  background-color: transparent;
+}
+
+.bannerCarousel__message {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1.4rem;
+  align-items: center;
+}
+
+.bannerCarousel__message > h2 {
+  color: #fff;
+  text-align: center;
+  margin-top: 0;
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.bannerCarousel__message > a {
+  background-color: rgba(255, 0, 0, 0.781);
+  border: rgba(255, 0, 0, 0.781);
+  outline: none;
+  width: 10rem;
+  color: #fff;
+  align-self: center;
+  border-radius: 2px;
+  font-size: 1.3rem;
+  padding: 10px;
+  text-decoration: none;
+  text-align: center;
+  font-family: "Lato", Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+@media screen and (max-width: 992px) {
+  .bannerCarousel,
+  .bannerCarousel__card {
+    height: 70vh;
+  }
+
+  .bannerCarousel__message > h2 {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .bannerCarousel,
+  .bannerCarousel__card {
+    height: 60vh;
+  }
+  .bannerCarousel__message > h2 {
+    font-size: 1.8rem;
+  }
+
+  .bannerCarousel__message > a {
+    padding: 9px;
+    width: 8rem;
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .bannerCarousel,
+  .bannerCarousel__card {
+    height: 50vh;
+  }
+
+  .bannerCarousel__message > h2 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .bannerCarousel__message > a {
+    width: 8rem;
+    font-size: 1rem;
+    padding: 7px;
+    align-self: center;
+    border-radius: 2px;
+  }
+}

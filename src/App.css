@@ -1,0 +1,10 @@
+.app {
+  background-color: #020403;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
