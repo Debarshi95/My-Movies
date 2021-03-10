@@ -13,6 +13,7 @@ function Banner({ data }) {
       <img
         src={`${IMAGE_URL}/${BACKDROP_SIZE}/${data.backdrop_path}`}
         alt={`${data.name || data.title}`}
+        className="banner__backdrop"
       />
       <div className="banner__posterContainer">
         <img

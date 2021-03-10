@@ -90,7 +90,7 @@
 @media screen and (max-width: 500px) {
   .bannerCarousel,
   .bannerCarousel__card {
-    height: 50vh;
+    height: 35vh;
   }
 
   .bannerCarousel__message > h2 {
