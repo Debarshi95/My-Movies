@@ -1,10 +1,10 @@
 import React from "react";
-import BannerCarousel from "../BannerCarousel";
-import Genres from "../Genres";
-import Row from "../Row";
-import { request } from "../../config/config";
+import BannerCarousel from "../components/BannerCarousel";
+import Genres from "../components/Genres";
+import Row from "../components/Row";
+import { request } from "../config/config";
 import "./Home.css";
-import { TypeContext } from "../../providers/TypeProvider";
+import { TypeContext } from "../providers/TypeProvider";
 import withRow from "../hoc/withRow";
 
 function Home() {

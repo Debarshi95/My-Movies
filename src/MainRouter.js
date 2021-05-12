@@ -2,14 +2,12 @@ import React, { Suspense } from "react";
 import { Route, Switch } from "react-router";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Loader from "./components/Loader";
-import Page404 from "./components/screens/Page404";
+import Page404 from "./screens/Page404";
 
-const LazyHome = React.lazy(() => import("./components/screens/Home"));
-const LazyItemInfo = React.lazy(() => import("./components/screens/ItemInfo"));
-const LazyGenre = React.lazy(() => import("./components/screens/Genre"));
-const LazySearchItem = React.lazy(() =>
-  import("./components/screens/SearchItem")
-);
+const LazyHome = React.lazy(() => import("./screens/Home"));
+const LazyItemInfo = React.lazy(() => import("./screens/ItemInfo"));
+const LazyGenre = React.lazy(() => import("./screens/Genre"));
+const LazySearchItem = React.lazy(() => import("./screens/SearchItem"));
 
 function MainRouter() {
   return (

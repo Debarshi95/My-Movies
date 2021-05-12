@@ -1,15 +1,15 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
 import { useParams } from "react-router-dom";
-import { getGenreId } from "../../util/helpers";
-import { headers, request } from "../../config/config";
-import { TypeContext } from "../../providers/TypeProvider";
-import InfoCard from "../InfoCard";
+import { getGenreId } from "../util/helpers";
+import { headers, request } from "../config/config";
+import { TypeContext } from "../providers/TypeProvider";
+import InfoCard from "../components/InfoCard";
 import "./Genre.css";
 
 function Genre() {
   const { name } = useParams();
-  const [data, setData] = React.useState({});
+  const [data, setData] = React.useState(null);
   const { type } = React.useContext(TypeContext);
   const _isMounted = React.useRef(false);
   const [pageNumber, setPageNumber] = React.useState(1);
@@ -31,18 +31,15 @@ function Genre() {
 
   const handlePageChange = ({ selected }) => setPageNumber(selected + 1);
 
-  const { results } = data;
-
   return (
     <div className="genre">
       <h2>{name}</h2>
       <div className="genre--row">
-        {results &&
-          results.map(
-            (result) =>
-              result.poster_path &&
-              result.backdrop_path && <InfoCard item={result} key={result.id} />
-          )}
+        {data?.results.map(
+          (result) =>
+            result.poster_path &&
+            result.backdrop_path && <InfoCard item={result} key={result.id} />
+        )}
       </div>
       <ReactPaginate
         previousLabel={"Previous"}
@@ -51,7 +48,7 @@ function Genre() {
         breakClassName={"break-me"}
         onPageChange={handlePageChange}
         pageRangeDisplayed={5}
-        pageCount={data.total_pages}
+        pageCount={data?.total_pages}
         containerClassName={"pagination"}
         activeClassName={"activeItem"}
       />

@@ -1,10 +1,10 @@
 import React from "react";
-import { headers } from "../../config/config";
+import { headers } from "../config/config";
 
 const useRequest = ({ url }) => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
-  const [apiData, setApiData] = React.useState({});
+  const [apiData, setApiData] = React.useState(null);
 
   React.useEffect(() => {
     const abortController = new AbortController();

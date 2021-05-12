@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router";
 import { TypeContext } from "../providers/TypeProvider";
-import useSearch from "./hooks/useSearch";
+import useSearch from "../hooks/useSearch";
 import "./SearchBar.css";
 
 function Search() {

@@ -4,10 +4,9 @@ import PropTypes from "prop-types";
 import "./Banner.css";
 
 function Banner({ data }) {
-  let releaseYear = data.release_date || data.last_air_date;
-  if (releaseYear !== null) {
-    releaseYear = releaseYear.split("-")[0];
-  }
+  const releaseYear =
+    data?.release_date?.split("-")[0] || data?.last_air_date?.split("-")[0];
+
   return (
     <div className="banner">
       <img

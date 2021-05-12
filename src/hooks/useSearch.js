@@ -1,5 +1,5 @@
 import React from "react";
-import { request, headers } from "../../config/config";
+import { request, headers } from "../config/config";
 
 const useSearch = ({ query, type }) => {
   const [searchedData, setSearchedData] = React.useState(null);
@@ -21,7 +21,7 @@ const useSearch = ({ query, type }) => {
     return function cleanup() {
       abortController.abort();
     };
-  }, [query]);
+  }, [query, type]);
 
   return { isLoading, searchedData };
 };

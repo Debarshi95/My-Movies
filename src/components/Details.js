@@ -9,8 +9,8 @@ function Details({ details }) {
         <span>Status</span> {details.status}
       </p>
       <p>
-        <span>Original Language</span>
-        {` ${makeLanguageFromIso(details.original_language).name}`}
+        <span>Original Language</span>{" "}
+        {makeLanguageFromIso(details.original_language).name}
       </p>
       <p>
         <span>Budget</span>
