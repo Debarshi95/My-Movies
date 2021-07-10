@@ -10,15 +10,15 @@ function SearchItem() {
 
   return (
     <div className="searchItem">
-      {state.length === 0 && (
+      {state?.length === 0 && (
         <p className="searchItem__notFound">
           There are no {`${type === "tv" ? `show` : type}`} that matched your
           query.
         </p>
       )}
 
-      {state.length > 0 &&
-        state.map((item) => <InfoCard item={item} key={item.id} />)}
+      {state?.length > 0 &&
+        state?.map((item) => <InfoCard item={item} key={item.id} />)}
     </div>
   );
 }

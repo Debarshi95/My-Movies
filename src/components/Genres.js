@@ -34,6 +34,7 @@ function Genres() {
             <img
               src={`${IMAGE_URL}/${POSTER_SIZE}/${item.poster_path}`}
               alt={item.name}
+              loading="lazy"
             />
             <p className="genres__name">{item.name}</p>
           </Link>

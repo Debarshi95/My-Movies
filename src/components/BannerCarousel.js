@@ -33,6 +33,7 @@ export default function BannerCarousel() {
             <img
               src={`${IMAGE_URL}/${BACKDROP_SIZE}/${data.backdrop_path}`}
               alt={data.title || data.name}
+              loading="lazy"
             />
           </div>
         ))}

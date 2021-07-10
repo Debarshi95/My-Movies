@@ -18,6 +18,7 @@ function Banner({ data }) {
         <img
           src={`${IMAGE_URL}/${POSTER_SIZE}/${data.poster_path}`}
           alt={`${data.name || data.title}`}
+          loading="lazy"
         />
         <div className="banner__movieDetails">
           <h2>

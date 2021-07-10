@@ -22,6 +22,7 @@ function PosterCard({ item }) {
               : "/assets/no_image.jpg"
           }
           alt={item.title || item.name}
+          loading="lazy"
         />
       </Link>
       {item.credit_id && <p className="posterCard__castName">{item.name}</p>}

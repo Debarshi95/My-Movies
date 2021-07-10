@@ -1,11 +1,9 @@
 const BASE_URL = "https://api.themoviedb.org/3";
-const TOKEN =
-  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmODA4NWIzNzA0NTIwY2M5ZjVkZWExMTUxYjE4N2Y0ZCIsInN1YiI6IjVmNmM4YzJjZTI2N2RlMDAzNTIzNzNiZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.bwOsTW3rYFQVQQMgi7whZWIcUsdhYFPke1r0-L-EXiM";
 
 const IMAGE_URL = "https://image.tmdb.org/t/p";
 
 const headers = {
-  Authorization: `Bearer ${TOKEN}`,
+  Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`,
   "Content-Type": "application/json",
 };
 

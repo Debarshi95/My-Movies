@@ -18,6 +18,7 @@ function InfoCard({ item }) {
               : "/assets/no_image.jpg"
           }
           alt={item.name || item.title}
+          loading="lazy"
         />
         <p>{item.name || item.title}</p>
       </Link>
