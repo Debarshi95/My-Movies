@@ -8,6 +8,7 @@ import { TypeContext } from "../providers/TypeProvider";
 import ToggleType from "./ToggleType";
 import useRequest from "../hooks/useRequest";
 import SearchBar from "./SearchBar";
+import LazyImage from "./LazyImage";
 
 export default function BannerCarousel() {
   const { type } = React.useContext(TypeContext);
@@ -30,10 +31,10 @@ export default function BannerCarousel() {
       >
         {apiData?.results.map((data) => (
           <div className="bannerCarousel__card" key={data.id}>
-            <img
-              src={`${IMAGE_URL}/${BACKDROP_SIZE}/${data.backdrop_path}`}
+            <LazyImage
+              url={`${IMAGE_URL}/${BACKDROP_SIZE}/${data.backdrop_path}`}
               alt={data.title || data.name}
-              loading="lazy"
+              height="100%"
             />
           </div>
         ))}

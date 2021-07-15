@@ -2,6 +2,7 @@ import React from "react";
 import { BACKDROP_SIZE, IMAGE_URL, POSTER_SIZE } from "../config/config";
 import PropTypes from "prop-types";
 import "./Banner.css";
+import LazyImage from "./LazyImage";
 
 function Banner({ data }) {
   const releaseYear =
@@ -9,16 +10,17 @@ function Banner({ data }) {
 
   return (
     <div className="banner">
-      <img
-        src={`${IMAGE_URL}/${BACKDROP_SIZE}/${data.backdrop_path}`}
+      <LazyImage
+        url={`${IMAGE_URL}/${BACKDROP_SIZE}/${data.backdrop_path}`}
         alt={`${data.name || data.title}`}
         className="banner__backdrop"
+        height="100%"
       />
       <div className="banner__posterContainer">
-        <img
-          src={`${IMAGE_URL}/${POSTER_SIZE}/${data.poster_path}`}
+        <LazyImage
+          url={`${IMAGE_URL}/${POSTER_SIZE}/${data.poster_path}`}
           alt={`${data.name || data.title}`}
-          loading="lazy"
+          height="100%"
         />
         <div className="banner__movieDetails">
           <h2>

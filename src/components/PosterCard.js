@@ -4,6 +4,7 @@ import { IMAGE_URL, POSTER_SIZE } from "../config/config";
 import { TypeContext } from "../providers/TypeProvider";
 import PropTypes from "prop-types";
 import "./PosterCard.css";
+import LazyImage from "./LazyImage";
 
 function PosterCard({ item }) {
   const { type } = React.useContext(TypeContext);
@@ -15,14 +16,14 @@ function PosterCard({ item }) {
         to={`/${type}/${item.id}`}
         className={item.credit_id ? `disable-link` : null}
       >
-        <img
-          src={
+        <LazyImage
+          url={
             poster
               ? `${IMAGE_URL}/${POSTER_SIZE}${poster}`
               : "/assets/no_image.jpg"
           }
           alt={item.title || item.name}
-          loading="lazy"
+          height="100%"
         />
       </Link>
       {item.credit_id && <p className="posterCard__castName">{item.name}</p>}
