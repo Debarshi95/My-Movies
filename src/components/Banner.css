@@ -16,7 +16,7 @@
   height: 90vh;
 }
 .banner__posterContainer {
-  height: 80vh;
+  height: 80%;
   position: absolute;
   display: flex;
   margin: auto;

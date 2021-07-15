@@ -10,17 +10,19 @@ function Banner({ data }) {
 
   return (
     <div className="banner">
-      <LazyImage
-        url={`${IMAGE_URL}/${BACKDROP_SIZE}/${data.backdrop_path}`}
-        alt={`${data.name || data.title}`}
-        className="banner__backdrop"
-        height="100%"
-      />
+      <div className="banner__backdrop">
+        <LazyImage
+          url={`${IMAGE_URL}/${BACKDROP_SIZE}/${data.backdrop_path}`}
+          alt={`${data.name || data.title}`}
+          height="100%"
+        />
+      </div>
       <div className="banner__posterContainer">
         <LazyImage
           url={`${IMAGE_URL}/${POSTER_SIZE}/${data.poster_path}`}
           alt={`${data.name || data.title}`}
           height="100%"
+          width="45%"
         />
         <div className="banner__movieDetails">
           <h2>
