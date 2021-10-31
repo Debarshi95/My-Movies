@@ -1,14 +1,15 @@
-import React from "react";
-import { request, headers } from "../config/config";
+/* eslint-disable consistent-return */
+import React from 'react';
+import { request, headers } from '../config/config';
 
 const useSearch = ({ query, type }) => {
   const [searchedData, setSearchedData] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
   React.useEffect(() => {
     const abortController = new AbortController();
-    if (query === "") return;
+    if (query === '') return;
     fetch(request.searchItem(query, type), {
-      headers: headers,
+      headers,
       signal: abortController.signal,
     })
       .then((res) => res.json())
