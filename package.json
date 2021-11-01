@@ -19,8 +19,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
+    "lint": "eslint . --ignore-path .gitignore",
+    "lint:fix": "eslint --fix . --ignore-path .gitignore",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
     "prepare": "husky install",
     "pre-commit": "lint-staged"
