@@ -1,5 +1,5 @@
-import React from "react";
-import { headers } from "../config/config";
+import React from 'react';
+import { headers } from '../config/config';
 
 const useRequest = ({ url }) => {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -10,7 +10,7 @@ const useRequest = ({ url }) => {
     const abortController = new AbortController();
 
     fetch(url, {
-      headers: headers,
+      headers,
       signal: abortController.signal,
     })
       .then((res) => res.json())

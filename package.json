@@ -2,10 +2,8 @@
   "name": "mymovies",
   "version": "0.1.0",
   "private": true,
+  "author": "Debarshi Bhattacharjee",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -21,12 +19,24 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "netlify": "netlify"
+    "lint": "eslint . --ignore-path .gitignore",
+    "lint:fix": "eslint --fix . --ignore-path .gitignore",
+    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
+    "prepare": "husky install",
+    "pre-commit": "lint-staged"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.+(js|jsx)": [
+      "yarn lint:fix",
+      "yarn format --ignore-unknown"
+    ],
+    "*.+(json|css|md)": [
+      "yarn format"
     ]
   },
   "browserslist": {
@@ -42,7 +52,19 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^7.30.0",
-    "eslint-plugin-react": "^7.24.0"
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.6",
+    "prettier": "^2.4.1"
   }
 }

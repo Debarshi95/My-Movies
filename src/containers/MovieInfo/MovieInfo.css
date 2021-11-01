@@ -1,0 +1,31 @@
+.itemInfo {
+  flex-direction: column;
+  display: flex;
+  flex: 1;
+}
+.itemInfo__wrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.itemInfo__overview > h2 {
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+.itemInfo__overview > p {
+  font-size: 1.1rem;
+}
+.itemInfo__overview {
+  margin-top: 3rem;
+}
+@media screen and (max-width: 600px) {
+  .itemInfo__overview {
+    margin-top: 2rem;
+  }
+  .itemInfo__overview > h2 {
+    font-size: 1.2rem;
+  }
+  .itemInfo__overview > p {
+    font-size: 0.9rem;
+  }
+}
