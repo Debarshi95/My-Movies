@@ -6,20 +6,17 @@ import Row from '../../components/Row/Row';
 import Details from '../../components/Details/Details';
 import Banner from '../../components/Banner/Banner';
 import useRequest from '../../hooks/useRequest';
-import './MovieInfo.css';
-import Page404 from '../NotFound/NotFound';
+import './Info.css';
 import withRow from '../../hoc/withRow';
 
-function MovieInfo() {
+function Info() {
   const { id } = useParams();
   const { path } = useRouteMatch();
   const type = path?.split('/')[1];
 
-  const { isLoading, apiData, error } = useRequest({
+  const { isLoading, apiData } = useRequest({
     url: request.getItemData(id, type),
   });
-
-  if (error) return <Page404 error={error.toString()} />;
 
   if (isLoading) return <Loader />;
 
@@ -52,4 +49,4 @@ function MovieInfo() {
   );
 }
 
-export default MovieInfo;
+export default Info;
