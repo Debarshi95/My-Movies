@@ -1,40 +1,33 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import React, { Suspense } from 'react';
+import PropTypes from 'prop-types';
+import { Switch, Route, Router } from 'react-router-dom';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-import './App.css';
-import TypeProvider from '../../providers/TypeProvider';
 import routeConfig from '../../utils/routeConfig';
-import Footer from '../Footer/Footer';
 import Loader from '../Loader/Loader';
+import Navbar from '../Navbar/Navbar';
+import './App.css';
 
-function App() {
+function App({ history }) {
   return (
-    <TypeProvider>
-      <div className="app">
-        <Router>
-          <ErrorBoundary>
-            <Suspense fallback={<Loader />}>
-              <Switch>
-                {Object.keys(routeConfig).map((routeKey) => {
-                  const Component = routeConfig[routeKey].component;
-                  const pathname = routeConfig[routeKey].path;
-                  return (
-                    <Route
-                      path={pathname}
-                      component={Component}
-                      key={routeKey}
-                      exact={routeConfig[routeKey].isExact}
-                    />
-                  );
-                })}
-              </Switch>
-            </Suspense>
-          </ErrorBoundary>
+    <div className="app">
+      <ErrorBoundary>
+        <Router history={history}>
+          <Navbar />
+          <Suspense fallback={<Loader />}>
+            <Switch>
+              {Object.keys(routeConfig).map((routeKey) => {
+                const { component, path, isExact } = routeConfig[routeKey];
+                return <Route path={path} component={component} key={routeKey} exact={isExact} />;
+              })}
+            </Switch>
+          </Suspense>
         </Router>
-        <Footer />
-      </div>
-    </TypeProvider>
+      </ErrorBoundary>
+    </div>
   );
 }
 
+App.propTypes = {
+  history: PropTypes.instanceOf(Object).isRequired,
+};
 export default App;
