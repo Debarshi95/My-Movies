@@ -1,12 +1,25 @@
+import './utils/wydr';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { history } from './utils/history';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
+import configureStore from './store/configureStore';
+import './index.css';
+
+const initialState = {};
+
+const { store, persistor } = configureStore(initialState);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <PersistGate persistor={persistor} loading={null}>
+        <App history={history} />
+      </PersistGate>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
