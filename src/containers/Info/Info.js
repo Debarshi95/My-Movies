@@ -1,52 +1,105 @@
-import React from 'react';
-import { useParams, useRouteMatch } from 'react-router-dom';
-import Loader from '../../components/Loader/Loader';
-import { request } from '../../config/config';
+/* eslint-disable react/prop-types */
+import React, { memo, useEffect, useCallback } from 'react';
+import { compose } from 'redux';
+import { injectReducer, injectSaga } from 'redux-injectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { isEqual } from 'lodash';
+import { Creators as CommonCreators } from '../../store/actions/commonActions';
+import {
+  selectCollection,
+  selectItemInfo,
+  selectRecommended,
+} from '../../store/selectors/infoSelector';
+import infoReducer from '../../store/reducers/infoReducer';
+import infoSaga from '../../store/sagas/infoSaga';
 import Row from '../../components/Row/Row';
-import Details from '../../components/Details/Details';
 import Banner from '../../components/Banner/Banner';
-import useRequest from '../../hooks/useRequest';
+import PosterCard from '../../components/PosterCard/PosterCard';
 import './Info.css';
-import withRow from '../../hoc/withRow';
 
 function Info() {
-  const { id } = useParams();
-  const { path } = useRouteMatch();
-  const type = path?.split('/')[1];
+  const dispatch = useDispatch();
+  const { data } = useSelector(selectItemInfo);
+  const { type: itemType, id: itemId } = useParams();
+  const { requestGetItemInfo, requestGetRecommendation, requestGetCollection } = CommonCreators;
 
-  const { isLoading, apiData } = useRequest({
-    url: request.getItemData(id, type),
-  });
+  const dispatchGetItemInfo = useCallback(
+    (args) => dispatch(requestGetItemInfo(args, itemId)),
+    [dispatch, itemId, requestGetItemInfo]
+  );
 
-  if (isLoading) return <Loader />;
+  const dispatchGetRecommendation = useCallback(
+    (args) => dispatch(requestGetRecommendation(args, itemId)),
+    [dispatch, itemId, requestGetRecommendation]
+  );
 
-  const RowComp = withRow(Row);
+  const dispatchGetCollection = useCallback(
+    () => dispatch(requestGetCollection(data?.belongs_to_collection?.id)),
+    [data?.belongs_to_collection?.id, dispatch, requestGetCollection]
+  );
+
+  useEffect(() => {
+    if (!isEqual(itemId, data?.id?.toString())) {
+      dispatchGetItemInfo(itemType, itemId);
+    }
+  }, [itemId, itemType, dispatch, data?.id, dispatchGetItemInfo]);
 
   return (
-    <div className="itemInfo">
-      {apiData && (
-        <>
-          <Banner data={apiData} />
-          <div className="itemInfo__wrapper">
-            <div className="itemInfo__overview">
-              <h2>Overview</h2>
-              <p>{apiData?.overview}</p>
+    <div className="info__root">
+      <Banner
+        bannerPath={data.backdrop_path}
+        posterPath={data.poster_path}
+        title={data.title || data.name}
+        genres={data.genres}
+        tagline={data.tagline}
+      />
+      <div className="info__container">
+        <div className="info__overview">
+          <h3>Overview</h3>
+          <p>{data?.overview}</p>
+        </div>
+
+        {data?.seasons && (
+          <>
+            <h3>Seasons</h3>
+            <div className="info__seasons">
+              {data.seasons.map((item) => (
+                <PosterCard
+                  key={item.id}
+                  type={itemType}
+                  alt={item.name}
+                  itemId={item.id}
+                  posterPath={item.poster_path}
+                />
+              ))}
             </div>
-            <Details details={apiData} />
-            <RowComp title="Cast" url={request.getCast(type, id)} />
-            {type === 'movie' && apiData?.belongs_to_collection && (
-              <RowComp
-                url={request.getCollection(apiData.belongs_to_collection.id)}
-                title="Collections"
-              />
-            )}
-            {type === 'tv' && apiData?.seasons && <Row results={apiData.seasons} title="Seasons" />}
-            <RowComp url={request.getRecommendations(id, type)} title="Recommendations" />
-          </div>
-        </>
-      )}
+          </>
+        )}
+
+        {data?.belongs_to_collection && (
+          <Row
+            title="Collection"
+            action={dispatchGetCollection}
+            selector={selectCollection}
+            type={itemType}
+          />
+        )}
+
+        <Row
+          title="Recommended"
+          action={dispatchGetRecommendation}
+          selector={selectRecommended}
+          type={itemType}
+          itemId={itemId}
+        />
+      </div>
     </div>
   );
 }
 
-export default Info;
+export default compose(
+  memo,
+  injectReducer({ key: 'info', reducer: infoReducer }),
+  injectSaga({ key: 'info', saga: infoSaga })
+)(Info);
