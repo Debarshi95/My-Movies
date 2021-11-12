@@ -1,9 +1,11 @@
-.banner {
+.banner__root {
   position: relative;
   display: flex;
   justify-content: center;
+  max-height: 82vh;
+  min-height: 38vh;
 }
-.banner:before {
+.banner__root:before {
   content: '';
   position: absolute;
   width: 100%;
@@ -13,39 +15,31 @@
 }
 .banner__backdrop {
   width: 100%;
-  height: 90vh;
-}
-.banner__posterContainer {
-  height: 80%;
-  position: absolute;
-  display: flex;
-  margin: auto;
-  width: 90%;
-  align-self: center;
+  height: auto;
 }
 
 .banner__movieDetails {
   width: 100%;
-  margin-left: 20px;
+  height: 100%;
+  align-items: flex-start;
+  justify-content: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  position: absolute;
+  padding: 1.6rem;
 }
 .banner__movieDetails > h2 {
   margin-bottom: 0.5rem;
-  font-size: 2rem;
-  font-weight: 600;
 }
 .banner__movieDetails > h2 > span {
   font-weight: 400;
 }
 
-.banner__movieDetails > h4 {
+.banner__movieDetails > h3 {
   font-style: italic;
   margin-top: 0;
-  font-family: 'Lato', Arial, Helvetica, sans-serif;
-  font-size: 1.3rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
 }
 
 .banner__genres {
@@ -54,51 +48,35 @@
 }
 .banner__genres > p {
   padding: 0 0.3rem;
-  font-weight: 450;
-  font-size: 1.2rem;
+  font-weight: 600;
   margin: 0;
 }
 .banner__genres > p:first-child {
   padding-left: 0;
 }
-.banner__runtime::before {
-  content: '\25cf';
-}
 
-@media screen and (max-width: 992px) {
-  .banner__genres > p {
-    font-size: 1.2rem;
+@media screen and (min-width: 600px) {
+  .banner__movieDetails {
+    padding: 2rem 3rem;
   }
-}
-
-@media screen and (max-width: 786px) {
-  .banner__genres > p {
-    font-size: 1rem;
-  }
-  .banner__posterContainer {
-    height: 60vh;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .banner__backdrop {
-    height: 40vh;
-  }
-  .banner__posterContainer {
-    height: 30vh;
-  }
-  .banner__overview > p {
-    font-size: initial;
-  }
-
   .banner__movieDetails > h2 {
-    font-size: 1.3rem;
+    margin-bottom: 1rem;
   }
   .banner__movieDetails > h4 {
-    font-size: 1rem;
+    margin-bottom: 1rem;
   }
-  .banner__genres,
-  .banner__runtime {
-    font-size: 0.8rem;
+}
+
+@media screen and (min-width: 600px) {
+  .banner__root {
+    min-height: 65vh;
+  }
+}
+@media screen and (min-width: 768px) {
+  .banner__movieDetails > h2 {
+    margin-bottom: 1rem;
+  }
+  .banner__movieDetails > h3 {
+    margin-bottom: 1rem;
   }
 }

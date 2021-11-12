@@ -1,61 +1,46 @@
-import React from 'react';
-import ReactPaginate from 'react-paginate';
-import { useParams } from 'react-router-dom';
-import { getGenreId } from '../../util/helpers';
-import { headers, request } from '../../config/config';
-import { TypeContext } from '../../providers/TypeProvider';
-import InfoCard from '../../components/InfoCard/InfoCard';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { compose } from 'redux';
+import { injectReducer, injectSaga } from 'redux-injectors';
+import { selectGenreData } from '../../store/selectors/genreSelector';
+import useMemoizedDispatch from '../../hooks/useMemoizedDispatch';
+import { Creators } from '../../store/actions/commonActions';
+import genreReducer from '../../store/reducers/genreReducer';
+import genreSaga from '../../store/sagas/genreSaga';
+import PosterCard from '../../components/PosterCard/PosterCard';
 import './Genre.css';
 
 function Genre() {
   const { name } = useParams();
-  const [data, setData] = React.useState(null);
-  const { type } = React.useContext(TypeContext);
-  const isMounted = React.useRef(false);
-  const [pageNumber, setPageNumber] = React.useState(1);
+  const data = useSelector(selectGenreData);
+  const dispatch = useMemoizedDispatch();
 
-  React.useEffect(() => {
-    isMounted.current = true;
-    const getGenreData = async () => {
-      const id = await getGenreId(type, name);
-      const res = await fetch(request.getGenreData(id, type, pageNumber), {
-        headers,
-      });
-      const resData = await res.json();
-      if (isMounted.current) setData(resData);
-      return resData;
-    };
-    getGenreData();
-    return () => {
-      isMounted.current = false;
-      return isMounted;
-    };
-  }, [name, type, pageNumber]);
-
-  const handlePageChange = ({ selected }) => setPageNumber(selected + 1);
+  useEffect(() => {
+    const { requestGetGenreData } = Creators;
+    dispatch(requestGetGenreData(1, name));
+  }, [dispatch, name]);
 
   return (
-    <div className="genre">
-      <h2>{name}</h2>
-      <div className="genre--row">
-        {data?.results.map(
-          (result) =>
-            result.poster_path && result.backdrop_path && <InfoCard item={result} key={result.id} />
-        )}
+    <div className="genre__root">
+      <h3>{name}</h3>
+      <div className="genre__row">
+        {data?.results?.map((item) => (
+          <PosterCard
+            key={item.id}
+            posterPath={item.poster_path}
+            alt={item.title || item.name}
+            type={data.type}
+            itemId={item.id}
+            widthMax
+          />
+        ))}
       </div>
-      <ReactPaginate
-        previousLabel="Previous"
-        nextLabel="Next"
-        breakLabel="..."
-        breakClassName="break-me"
-        onPageChange={handlePageChange}
-        pageRangeDisplayed={5}
-        pageCount={data?.total_pages}
-        containerClassName="pagination"
-        activeClassName="activeItem"
-      />
     </div>
   );
 }
 
-export default Genre;
+export default compose(
+  injectReducer({ key: 'genre', reducer: genreReducer }),
+  injectSaga({ key: 'genre', saga: genreSaga })
+)(Genre);
