@@ -5,7 +5,7 @@ import { isEqual } from 'lodash';
 import { Carousel as ResponsiveCarousel } from 'react-responsive-carousel';
 import { selectTrending } from '../../store/selectors/homeSelector';
 import { Creators } from '../../store/actions/commonActions';
-import SearchBar from '../Searchbar/Searchbar';
+import SearchBar from '../SearchBar/SearchBar';
 import useMemoizedDispatch from '../../hooks/useMemoizedDispatch';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './Carousel.css';

@@ -1,46 +1,41 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
-import { TypeContext } from '../../providers/TypeProvider';
-import useSearch from '../../hooks/useSearch';
+import React, { memo, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { Creators } from '../../store/actions/commonActions';
+import routes from '../../utils/routes';
 import './SearchBar.css';
 
-function SearchBar() {
-  const [query, setQuery] = React.useState('');
-  const ref = React.useRef('');
-  const { type } = React.useContext(TypeContext);
-  const { searchedData } = useSearch({ query, type });
+function Searchbar() {
+  const [query, setQuery] = useState('');
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setQuery(ref.current.value);
-    ref.current.value = '';
+
+    const { requestGetSearchData } = Creators;
+    if (query === '') return;
+    dispatch(requestGetSearchData(query));
+    history.push(routes.search.path);
   };
-  if (searchedData)
-    return (
-      <Redirect
-        push
-        to={{
-          pathname: `/search`,
-          search: `?query=${query}`,
-          state: searchedData,
-        }}
-      />
-    );
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+  };
 
   return (
-    <div className="searchBar">
+    <div className="searchbar__root">
       <input
         type="text"
-        name="searchBar"
+        name="searchbar"
         placeholder="Search for a movie or show"
-        ref={ref}
         autoComplete="off"
+        onChange={handleChange}
       />
-      <button type="button" onClick={handleSearch} className="searchBar__btnSearch">
+      <button type="button" onClick={handleSearch} className="searchbar__btnSearch">
         Search
       </button>
     </div>
   );
 }
 
-export default SearchBar;
+export default memo(Searchbar);

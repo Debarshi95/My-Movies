@@ -1,53 +1,65 @@
-.searchBar {
-  margin-top: 1rem;
-  width: 38rem;
+.searchbar__root {
+  max-width: 34rem;
   display: flex;
+  margin-top: 0.5rem;
+  width: 100%;
+  padding: 0 1rem;
+  justify-content: center;
 }
 
-.searchBar > input[type='text'] {
-  flex: 3;
+.searchbar__root > input[type='text'] {
   outline: none;
-  padding: 0.8rem 1.2rem;
+  padding: 0.55rem 1rem;
   border-width: 0;
   border-style: none;
-  font-size: 1rem;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
+  border-top-left-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+  font-family: inherit;
+  color: var(--color-text-disabled);
+  flex: 1;
 }
 
-.searchBar__btnSearch {
-  background: red;
-  flex: 1;
-  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-  border-color: red;
+.searchbar__btnSearch {
+  background-color: var(--color-text-primary);
+  font-family: inherit;
+  border-color: var(--color-text-primary);
   outline: none;
-  color: #fff;
+  color: var(--color-text-secondary);
   font-weight: 600;
   border-width: 0;
   border-style: none;
-  font-size: 1rem;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
   cursor: pointer;
+  padding: 0 1rem;
 }
 
-@media screen and (max-width: 786px) {
-  .searchBar {
-    width: 30rem;
+@media screen and (min-width: 442px) {
+  .searchbar__root {
+    padding: 0 2rem;
+  }
+
+  .searchbar__btnSearch {
+    padding: 0 1.5rem;
   }
 }
 
-@media screen and (max-width: 500px) {
-  .searchBar {
-    width: 20rem;
-    margin: 0;
+@media screen and (min-width: 600px) {
+  .searchbar__root > input[type='text'] {
+    padding: 0.7rem 1.75rem;
+    font-size: 1rem;
   }
-  .searchBar > input[type='text'] {
-    padding: 0.5rem 0.8rem;
-    font-size: 0.9rem;
+  .searchbar__btnSearch {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .searchbar__root > input[type='text'] {
+    padding: 0.75rem 1.5rem;
   }
 
-  .searchBar__btnSearch {
-    font-size: 0.9rem;
+  .searchbar__btnSearch {
+    padding: 0 2rem;
   }
 }

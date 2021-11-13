@@ -1,48 +1,33 @@
 import React from 'react';
-import { Link, withRouter, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './ErrorBoundary.css';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
+      // eslint-disable-next-line react/no-unused-state
       error: null,
+      hasError: false,
     };
   }
 
-  componentDidMount() {
-    const { history } = this.props;
-
-    this.unlisten = history.listen(() => {
-      const { error } = this.state;
-      if (error) {
-        this.setState({ error: null });
-      }
-    });
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
   }
 
-  componentDidCatch(error) {
-    this.setState({
-      error,
-    });
-  }
-
-  componentWillUnmount() {
-    this.unlisten();
+  componentDidCatch(error, errorInfo) {
+    // eslint-disable-next-line no-console
+    console.log(error, errorInfo);
   }
 
   render() {
-    const { error } = this.state;
+    const { hasError } = this.state;
     const { children } = this.props;
-    if (error) {
+    if (hasError) {
       return (
-        <div className="errorBoundary">
-          <h2>Ooops! some error occurred</h2>
-          <Link to="/" className="errorBoundary__home">
-            Home
-          </Link>
+        <div className="errorBoundary__root">
+          <h2>Ooops! Something went wrong...</h2>
         </div>
       );
     }
@@ -51,9 +36,7 @@ class ErrorBoundary extends React.Component {
 }
 
 ErrorBoundary.propTypes = {
-  children: PropTypes.element.isRequired,
-  listen: PropTypes.func.isRequired,
-  history: PropTypes.objectOf(Route).isRequired,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 
-export default withRouter(ErrorBoundary);
+export default ErrorBoundary;
