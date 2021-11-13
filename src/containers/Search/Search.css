@@ -1,20 +1,52 @@
-.searchItem {
-  width: 90%;
-  margin: 0 auto;
-  flex: 3;
-  align-items: center;
-  justify-content: space-around;
+.search__root {
+  max-width: 94%;
+  margin: 2.75rem auto 0 auto;
   display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+  position: relative;
+}
+.searchCard {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
   flex-wrap: wrap;
 }
-.searchItem__notFound {
+
+.searchCard > .posterCard {
+  max-width: 100%;
+  max-height: 20rem;
+  margin: 0 0 0.75rem 0;
+}
+.search__notFound {
   text-align: center;
   font-size: 1.8rem;
   font-weight: 400;
 }
 
-@media screen and (max-width: 500px) {
-  .searchItem__notFound {
+.search__message {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 442px) {
+  .search__root {
+    margin-top: 3.5rem;
+  }
+
+  .searchCard > .posterCard {
+    max-width: 18rem;
+  }
+  .search__notFound {
     font-weight: 1.2rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .search__root {
+    margin-top: 4rem;
   }
 }

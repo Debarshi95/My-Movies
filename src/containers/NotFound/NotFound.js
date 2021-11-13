@@ -4,9 +4,9 @@ import './NotFound.css';
 
 function NotFound() {
   return (
-    <div className="pageNotFound">
-      <h2>Oops! We can&apos;t find the page you&apos;re looking for</h2>
-      <Link to="/">Home</Link>
+    <div className="notFound__root">
+      <h2>404 | Page not found</h2>
+      <Link to="/">MyMovies</Link>
     </div>
   );
 }

@@ -1,52 +1,31 @@
-.pageNotFound {
-  width: 90%;
+.notFound__root {
+  max-width: 94%;
   margin: 0 auto;
-  flex: 2;
+  flex: 1;
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
 
-.pageNotFound > h2 {
+.notFound__root > h2 {
   font-weight: 400;
-  margin-top: 2rem;
-  font-size: 2rem;
+  margin: 1rem 0;
   text-align: center;
 }
 
-.pageNotFound > a {
-  background-color: rgb(37, 36, 37);
+.notFound__root > a {
+  background-color: var(--color-text-primary);
   width: 10rem;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   align-self: center;
   text-align: center;
   text-decoration: none;
-  color: #fff;
-  border-radius: 2px;
-  font-weight: 600;
+  color: var(--color-text-secondary);
+  border-radius: 0.2rem;
   font-family: 'Lato', Arial, Helvetica, sans-serif;
   padding: 0.5rem 1rem;
 }
 
-.pageNotFound > a:hover {
-  opacity: 0.7;
-}
-
-@media screen and (max-width: 786px) {
-  .pageNotFound > h2 {
-    font-size: 1.5rem;
-  }
-  .pageNotFound > a {
-    width: 8rem;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .pageNotFound > h2 {
-    font-size: 1.2rem;
-  }
-  .pageNotFound > a {
-    width: 6rem;
-    font-size: 1rem;
-  }
+.notFound__root > a:hover {
+  opacity: 0.8;
 }

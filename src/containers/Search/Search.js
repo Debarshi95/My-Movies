@@ -1,22 +1,31 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
-import { TypeContext } from '../../providers/TypeProvider';
-import InfoCard from '../../components/InfoCard/InfoCard';
+import { useSelector } from 'react-redux';
+import { selectFilteredSearch } from '../../store/selectors/homeSelector';
+import PosterCard from '../../components/PosterCard/PosterCard';
 import './Search.css';
 
 function Search() {
-  const { type } = React.useContext(TypeContext);
-  const { state } = useLocation();
+  const data = useSelector(selectFilteredSearch);
 
   return (
-    <div className="searchItem">
-      {state?.length === 0 && (
-        <p className="searchItem__notFound">
-          There are no {`${type === 'tv' ? `show` : type}`} that matched your query.
-        </p>
-      )}
-
-      {state?.length > 0 && state?.map((item) => <InfoCard item={item} key={item.id} />)}
+    <div className="search__root">
+      <div className="searchCard">
+        {data.length ? (
+          data.map((item) => (
+            <PosterCard
+              posterPath={item.poster_path}
+              key={item.id}
+              itemId={item.id}
+              type={item.media_type}
+              alt={item.title || item.name}
+            />
+          ))
+        ) : (
+          <div className="search__message">
+            <h2>No resource found</h2>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
