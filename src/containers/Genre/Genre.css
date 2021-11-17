@@ -1,72 +1,39 @@
-.genre {
-  width: 90%;
-  margin: 0 auto;
+.genre__root {
+  max-width: 94%;
+  margin: 2.75rem auto;
   display: flex;
   flex-direction: column;
   flex: 1;
+  min-height: 100vh;
+  position: relative;
 }
-.genre > h2::first-letter {
+.genre__root > h3 {
+  margin-bottom: 1rem;
+}
+.genre__root > h3::first-letter {
   text-transform: capitalize;
 }
-.genre > h2 {
-  margin: 3rem 0 1rem 0;
-  font-weight: 400;
-  font-size: 2rem;
-}
-.genre--row {
+
+.genre__row {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   width: 100%;
 }
-
-.pagination {
-  display: flex;
-  padding: 0;
-  list-style: none;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.pagination > li {
-  border: 1px solid gray;
-  padding: 0.8rem;
-  border-radius: 3px;
+.genre__row > .posterCard {
+  max-width: 100%;
+  max-height: 20rem;
+  margin: 0 0 0.75rem 0;
 }
 
-.pagination > li > a {
-  cursor: pointer;
-  outline: none;
-  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  font-size: 1.2rem;
-}
-
-.activeItem {
-  background: rgba(255, 255, 255, 0.205);
-  color: #fff;
-}
-
-@media screen and (max-width: 786px) {
-  .genre > h2 {
-    margin-top: 2rem;
-    font-size: 1.8rem;
-  }
-  .genre__pagination {
-    margin: 2rem 0;
-  }
-  .pagination > li > a {
-    font-size: 1rem;
+@media screen and (min-width: 442px) {
+  .genre__row > .posterCard {
+    max-width: 18rem;
   }
 }
 
-@media screen and (max-width: 500px) {
-  .genre > h2 {
-    font-size: 1.4rem;
-  }
-  .pagination > li {
-    padding: 0.5rem;
-  }
-  .pagination > li > a {
-    font-size: 1rem;
+@media screen and (min-width: 600px) {
+  .genre__root {
+    margin-top: 3.5rem;
   }
 }
