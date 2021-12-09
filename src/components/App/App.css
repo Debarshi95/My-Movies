@@ -4,7 +4,61 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 *::-webkit-scrollbar {
   display: none;
+}
+.app p,
+h2,
+h3,
+h4 {
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  color: var(--color-text-secondary);
+}
+
+.app h2 {
+  font-weight: 500;
+  font-size: 1.35rem;
+}
+
+.app h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.app p {
+  font-size: 1rem;
+}
+
+@media screen and (min-width: 442px) {
+  .app h2 {
+    font-size: 1.7rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .app h2 {
+    font-size: 2rem;
+  }
+  .app h3 {
+    font-size: 1.5rem;
+  }
+  .app p {
+    font-size: 1.15rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .app h2 {
+    font-size: 1.9rem;
+  }
+  .app p {
+    font-size: 1.25rem;
+  }
+}
+
+.content__title--lg {
+  font-size: 1.2rem;
+  font-family: inherit;
 }

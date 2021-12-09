@@ -1,34 +1,14 @@
-.errorBoundary {
+.errorBoundary__root {
+  max-width: 94%;
+  margin: 0 auto;
+  flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex: 2;
-  width: 100%;
   flex-direction: column;
 }
-.errorBoundary > h2 {
-  text-align: center;
-  font-size: 2rem;
+
+.errorBoundary__root > h2 {
   font-weight: 400;
-}
-
-.errorBoundary__home {
-  background: rgb(24, 23, 23);
-  color: #fff;
-  text-decoration: none;
-  padding: 0.6rem 1.5rem;
-  border-radius: 3px;
-  font-weight: 500;
-}
-
-@media screen and (max-width: 786px) {
-  .errorBoundary > h2 {
-    font-size: 1.7rem;
-  }
-}
-
-@media screen and (max-width: 786px) {
-  .errorBoundary > h2 {
-    font-size: 1.4rem;
-  }
+  margin: 1rem 0;
+  text-align: center;
 }

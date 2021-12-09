@@ -1,0 +1,27 @@
+.info__root {
+  flex-direction: column;
+  display: flex;
+  flex: 1;
+}
+.info__root h3 {
+  margin-bottom: 1rem;
+}
+.info__overview > p {
+  margin-bottom: 1rem;
+}
+
+.info__container {
+  max-width: 94%;
+  margin: 1.5rem auto;
+}
+
+.info__seasons {
+  display: flex;
+  flex-wrap: no-wrap;
+}
+
+@media screen and (min-width: 600px) {
+  .info__container {
+    max-width: 92%;
+  }
+}

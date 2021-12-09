@@ -1,49 +1,56 @@
-import React from 'react';
+import React, { memo, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { isEqual } from 'lodash';
 import { Carousel as ResponsiveCarousel } from 'react-responsive-carousel';
-import { BACKDROP_SIZE, IMAGE_URL, request } from '../../config/config';
+import { selectTrending } from '../../store/selectors/homeSelector';
+import { Creators } from '../../store/actions/commonActions';
+import SearchBar from '../SearchBar/SearchBar';
+import useMemoizedDispatch from '../../hooks/useMemoizedDispatch';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './Carousel.css';
-import { TypeContext } from '../../providers/TypeProvider';
-import ToggleType from '../ToggleType/ToggleType';
-import useRequest from '../../hooks/useRequest';
-import SearchBar from '../SearchBar/SearchBar';
-import LazyImage from '../LazyImage/LazyImage';
 
-function Carousel() {
-  const { type } = React.useContext(TypeContext);
+function Carousel({ type }) {
+  const dispatch = useMemoizedDispatch();
+  const data = useSelector(selectTrending);
 
-  const { apiData } = useRequest({
-    url: request.getTrendingThisWeek(type),
-  });
+  useEffect(() => {
+    const { requestGetTrending } = Creators;
+    if (!isEqual(type, data.itemType)) {
+      dispatch(requestGetTrending(type));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, type]);
 
   return (
-    <div className="bannerCarousel">
+    <div className="bannerCarousel__root">
       <ResponsiveCarousel
         showArrows={false}
         showThumbs={false}
         showIndicators={false}
         showStatus={false}
         autoPlay
-        infiniteLoop
-        transitionTime={2000}
-        interval={3000}
+        transitionTime={2500}
+        interval={4000}
       >
-        {apiData?.results.map((data) => (
-          <div className="bannerCarousel__card" key={data.id}>
-            <LazyImage
-              url={`${IMAGE_URL}/${BACKDROP_SIZE}/${data.backdrop_path}`}
-              alt={data.title || data.name}
-              height="100%"
-            />
-          </div>
+        {data?.data?.results?.map((item) => (
+          <img
+            key={item.id}
+            src={`${process.env.REACT_APP_BACKDROP_IMAGE}/${item.backdrop_path}`}
+            alt={item.title || item.name}
+            loading="lazy"
+          />
         ))}
       </ResponsiveCarousel>
-      <div className="bannerCarousel__message">
+      <div className="bannerCarousel__container">
         <h2>Dicover millions of movies & TV shows</h2>
         <SearchBar />
       </div>
-      <ToggleType />
     </div>
   );
 }
-export default Carousel;
+
+Carousel.propTypes = {
+  type: PropTypes.string.isRequired,
+};
+export default memo(Carousel);

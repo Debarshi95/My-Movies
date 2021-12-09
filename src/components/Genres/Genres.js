@@ -1,45 +1,49 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
+import React, { memo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { headers, IMAGE_URL, request, POSTER_SIZE } from '../../config/config';
+import { useSelector } from 'react-redux';
+import { get } from 'lodash';
+import { selectGenreList } from '../../store/selectors/homeSelector';
+import { Creators } from '../../store/actions/commonActions';
+import useMemoizedDispatch from '../../hooks/useMemoizedDispatch';
+import LazyImage from '../LazyImage/LazyImage';
 import './Genres.css';
-import { TypeContext } from '../../providers/TypeProvider';
 
-function Genres() {
-  const [genres, setGenres] = React.useState(null);
-  const { type } = React.useContext(TypeContext);
-  const isMounted = React.useRef(false);
+function Genres({ type }) {
+  const { data: genreList } = useSelector(selectGenreList);
+  const dispatch = useMemoizedDispatch();
 
-  React.useEffect(() => {
-    isMounted.current = true;
-    const getGenres = async () => {
-      const res = await fetch(request.getGenre(), headers);
-      const data = await res.json();
-      if (isMounted.current) setGenres(data.genres[type]);
-      return data;
-    };
-    getGenres();
-    return () => {
-      isMounted.current = false;
-      return isMounted;
-    };
-  }, [type]);
+  useEffect(() => {
+    const results = get(genreList, 'results');
+    if (!results) {
+      const { requestGetGenres } = Creators;
+      dispatch(requestGetGenres());
+    }
+  }, [dispatch, genreList]);
 
   return (
-    <div className="genres">
-      <h2>Genres</h2>
+    <div className="genres__root">
+      <h3>Genres</h3>
       <div className="genres__row">
-        {genres?.map((item) => (
-          <Link to={`/genre/${item.name.toLowerCase()}`} className="genres__card" key={item.id}>
-            <img
-              src={`${IMAGE_URL}/${POSTER_SIZE}/${item.poster_path}`}
-              alt={item.name}
-              loading="lazy"
-            />
-            <p className="genres__name">{item.name}</p>
-          </Link>
-        ))}
+        {genreList?.results?.map(
+          (item) =>
+            item.type === type && (
+              <Link to={`/genre/${item.name.toLowerCase()}`} className="genres__card" key={item.id}>
+                <LazyImage
+                  url={
+                    item.poster_path
+                      ? `${process.env.REACT_APP_POSTER_IMAGE}${item.poster_path}`
+                      : '/assets/no_image.jpg'
+                  }
+                  alt={item.name}
+                />
+                <p className="genres__name">{item.name}</p>
+              </Link>
+            )
+        )}
       </div>
     </div>
   );
 }
-export default Genres;
+
+export default memo(Genres);

@@ -1,4 +1,10 @@
-.home__wrapper {
-  width: 95%;
-  margin: auto;
+.home__container {
+  max-width: 94%;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 600px) {
+  .home__container {
+    max-width: 92%;
+  }
 }

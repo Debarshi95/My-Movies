@@ -1,41 +1,34 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { IMAGE_URL, POSTER_SIZE } from '../../config/config';
-import { TypeContext } from '../../providers/TypeProvider';
-import './PosterCard.css';
 import LazyImage from '../LazyImage/LazyImage';
+import './PosterCard.css';
 
-function PosterCard({ item }) {
-  const { type } = React.useContext(TypeContext);
-  const poster = item.profile_path || item.poster_path;
-
+function PosterCard({ alt, posterPath, type, itemId }) {
   return (
-    <div className="posterCard">
-      <Link to={`/${type}/${item.id}`} className={item.credit_id ? `disable-link` : null}>
+    <Link to={`/${type}/${itemId}`} className="posterCard">
+      <div className="posterCard__item">
         <LazyImage
-          url={poster ? `${IMAGE_URL}/${POSTER_SIZE}${poster}` : '/assets/no_image.jpg'}
-          alt={item.title || item.name}
-          height="100%"
+          url={
+            posterPath
+              ? `${process.env.REACT_APP_POSTER_IMAGE}${posterPath}`
+              : '/assets/no_image.jpg'
+          }
+          alt={alt}
         />
-      </Link>
-      {item.credit_id && <p className="posterCard__castName">{item.name}</p>}
-    </div>
+      </div>
+    </Link>
   );
 }
 
 PosterCard.defaultProps = {
-  item: {},
+  posterPath: null,
+  alt: '',
 };
-
 PosterCard.propTypes = {
-  item: PropTypes.shape({
-    profile_path: PropTypes.string,
-    poster_path: PropTypes.string,
-    id: PropTypes.string,
-    credit_id: PropTypes.string,
-    title: PropTypes.string,
-    name: PropTypes.string,
-  }),
+  alt: PropTypes.string,
+  posterPath: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  itemId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
-export default PosterCard;
+export default memo(PosterCard);
