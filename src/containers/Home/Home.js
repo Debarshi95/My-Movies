@@ -28,7 +28,6 @@ function Home() {
     requestGetUpcomingShows,
   } = Creators;
 
-  console.log('Home rendered');
   return (
     <div className="home">
       <Carousel type={itemType} />

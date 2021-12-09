@@ -14,8 +14,6 @@ function Carousel({ type }) {
   const dispatch = useMemoizedDispatch();
   const data = useSelector(selectTrending);
 
-  console.log('CROUSEL RENDERED');
-
   useEffect(() => {
     const { requestGetTrending } = Creators;
     if (!isEqual(type, data.itemType)) {
