@@ -32,6 +32,11 @@ jobs:
       - name: Build
         env:
           REACT_APP_API_TOKEN: ${{ secrets.REACT_APP_API_TOKEN }}
+          REACT_APP_PUBLIC_URL: ${{secrets.REACT_APP_PUBLIC_URL}}
+          REACT_APP_TMBD_URL: ${{secrets.REACT_APP_TMBD_URL}}
+          REACT_APP_IMAGE_URL: ${{secrets.REACT_APP_IMAGE_URL}}
+          REACT_APP_POSTER_IMAGE: ${{secrets.REACT_APP_POSTER_IMAGE}}
+          REACT_APP_BACKDROP_IMAGE: ${{secrets.REACT_APP_BACKDROP_IMAGE}}
         run: yarn build
 
       - name: Deploy to Netlify
@@ -43,5 +48,3 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
-
-
