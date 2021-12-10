@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import LazyImage from '../LazyImage/LazyImage';
 import './PosterCard.css';
 
-function PosterCard({ alt, posterPath, type, itemId }) {
+function PosterCard({ alt, posterPath, type, itemId, variant }) {
   return (
-    <Link to={`/${type}/${itemId}`} className="posterCard">
+    <Link to={`/${type}/${itemId}`} className={`posterCard posterCard--${variant}`}>
       <div className="posterCard__item">
         <LazyImage
           url={
@@ -24,11 +24,13 @@ function PosterCard({ alt, posterPath, type, itemId }) {
 PosterCard.defaultProps = {
   posterPath: null,
   alt: '',
+  variant: 'primary',
 };
 PosterCard.propTypes = {
   alt: PropTypes.string,
   posterPath: PropTypes.string,
   type: PropTypes.string.isRequired,
   itemId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  variant: PropTypes.string,
 };
 export default memo(PosterCard);

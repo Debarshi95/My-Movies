@@ -1,14 +1,22 @@
 .posterCard {
   flex-shrink: 0;
   background-color: rgba(26, 25, 25, 0.26);
-  max-width: 14rem;
-  max-height: 16rem;
+  max-width: 18rem;
+  max-height: 26rem;
   position: relative;
   margin: 0 0.45rem;
   border-radius: 0.15rem;
   overflow: hidden;
 }
+.posterCard--primary {
+  height: 15.5rem;
+  width: 13.5rem;
+}
 
+.posterCard--secondary {
+  height: 10rem;
+  width: 16rem;
+}
 .posterCard__item {
   display: contents;
 }
@@ -22,4 +30,18 @@
 
 .posterCard:hover {
   opacity: 0.5;
+}
+
+@media screen and (min-width: 600px) {
+  .posterCard--primary {
+    height: 17rem;
+    width: 15rem;
+  }
+}
+
+@media screen and (min-width: 822px) {
+  .posterCard--primary {
+    height: 20rem;
+    width: 17rem;
+  }
 }
