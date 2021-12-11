@@ -4,9 +4,12 @@ import PropTypes from 'prop-types';
 import LazyImage from '../LazyImage/LazyImage';
 import './PosterCard.css';
 
-function PosterCard({ alt, posterPath, type, itemId, variant }) {
+function PosterCard({ alt, posterPath, type, itemId, variant, widthMax }) {
   return (
-    <Link to={`/${type}/${itemId}`} className={`posterCard posterCard--${variant}`}>
+    <Link
+      to={`/${type}/${itemId}`}
+      className={`posterCard posterCard--${variant} ${widthMax && 'posterCard--maxWidth'}`}
+    >
       <div className="posterCard__item">
         <LazyImage
           url={
@@ -25,6 +28,7 @@ PosterCard.defaultProps = {
   posterPath: null,
   alt: '',
   variant: 'primary',
+  widthMax: false,
 };
 PosterCard.propTypes = {
   alt: PropTypes.string,
@@ -32,5 +36,6 @@ PosterCard.propTypes = {
   type: PropTypes.string.isRequired,
   itemId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   variant: PropTypes.string,
+  widthMax: PropTypes.bool,
 };
 export default memo(PosterCard);

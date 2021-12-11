@@ -12,7 +12,10 @@
   height: 15.5rem;
   width: 13.5rem;
 }
-
+.posterCard--maxWidth {
+  max-width: 100%;
+  width: 100%;
+}
 .posterCard--secondary {
   height: 10rem;
   width: 16rem;
@@ -36,6 +39,10 @@
   .posterCard--primary {
     height: 17rem;
     width: 15rem;
+  }
+
+  .posterCard--maxWidth {
+    max-width: inherit;
   }
 }
 
