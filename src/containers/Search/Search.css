@@ -7,16 +7,14 @@
   min-height: 100vh;
   position: relative;
 }
-.searchCard {
+.search__row {
   display: flex;
   justify-content: space-between;
   width: 100%;
   flex-wrap: wrap;
 }
 
-.searchCard > .posterCard {
-  max-width: 100%;
-  max-height: 20rem;
+.search__row > .posterCard {
   margin: 0 0 0.75rem 0;
 }
 .search__notFound {
@@ -35,10 +33,6 @@
 @media screen and (min-width: 442px) {
   .search__root {
     margin-top: 3.5rem;
-  }
-
-  .searchCard > .posterCard {
-    max-width: 18rem;
   }
   .search__notFound {
     font-weight: 1.2rem;
