@@ -1,9 +1,10 @@
 .bannerCarousel__root {
   position: relative;
+  max-height: 80vh;
+  height: 40vh;
 }
 .slide {
-  max-height: 80vh;
-  min-height: 37vh;
+  height: 40vh;
 }
 .slide::before {
   position: absolute;
@@ -14,7 +15,8 @@
   opacity: 0.5;
 }
 .slide img {
-  min-height: inherit;
+  height: 100%;
+  width: 100%;
 }
 
 .bannerCarousel__container {
@@ -35,8 +37,20 @@
   margin-bottom: 1rem;
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 600px) {
+  .bannerCarousel__root {
+    height: 60vh;
+  }
   .slide {
-    min-height: 80vh;
+    height: 60vh;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .bannerCarousel__root {
+    height: 80vh;
+  }
+  .slide {
+    height: 80vh;
   }
 }

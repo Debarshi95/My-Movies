@@ -9,7 +9,7 @@ function Search() {
 
   return (
     <div className="search__root">
-      <div className="searchCard">
+      <div className="search__row">
         {data.length ? (
           data.map((item) => (
             <PosterCard
@@ -18,6 +18,8 @@ function Search() {
               itemId={item.id}
               type={item.media_type}
               alt={item.title || item.name}
+              variant="primary"
+              widthMax
             />
           ))
         ) : (

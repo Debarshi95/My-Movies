@@ -32,6 +32,7 @@ function Genre() {
             alt={item.title || item.name}
             type={data.type}
             itemId={item.id}
+            variant="primary"
             widthMax
           />
         ))}

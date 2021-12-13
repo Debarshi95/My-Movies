@@ -1,16 +1,16 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import LazyImage from '../LazyImage/LazyImage';
 import './Banner.css';
 
 function Banner({ bannerPath, title, genres, tagline }) {
   return (
     <div className="banner__root">
       <div className="banner__backdrop">
-        <LazyImage
-          url={`${process.env.REACT_APP_BACKDROP_IMAGE}${bannerPath}`}
+        <img
+          src={`${process.env.REACT_APP_BACKDROP_IMAGE}${bannerPath}`}
           alt={title}
           height="100%"
+          loading="lazy"
         />
       </div>
       <div className="banner__movieDetails">
