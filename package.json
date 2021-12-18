@@ -4,7 +4,6 @@
   "private": true,
   "author": "Debarshi Bhattacharjee",
   "dependencies": {
-    "axios": "^0.24.0",
     "history": "4.10.1",
     "lodash": "4.17.21",
     "prop-types": "^15.7.2",

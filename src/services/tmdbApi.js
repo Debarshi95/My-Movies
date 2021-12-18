@@ -7,7 +7,7 @@ const genreApi = generateApiClient(process.env.REACT_APP_PUBLIC_URL);
 
 export const getPopular = (type = 'movie') => tmbdApi.get(`/${type}/popular`);
 
-export const getTrendingThisWeek = (type = 'all') => tmbdApi.get(`trending/${type}/week`);
+export const getTrendingThisWeek = (type = 'all') => tmbdApi.get(`/trending/${type}/week`);
 
 export const getTopRated = (type = 'movie') => tmbdApi.get(`/${type}/top_rated`);
 

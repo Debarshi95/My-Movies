@@ -7,7 +7,7 @@ export const selectGenreItem = (name) =>
     const { data } = list;
 
     /**
-     * There can be more than 1 items same name and id after filtering,
+     * There can be more than 1 items with same name and same id after filtering,
      * select only the first item in the array
      */
     const filteredGenre = data?.results.filter((result) => result.name.toLowerCase() === name)[0];

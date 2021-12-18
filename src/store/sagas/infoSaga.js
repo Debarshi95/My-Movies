@@ -8,8 +8,8 @@ function* fetchItemInfo({ itemId, itemType }) {
   try {
     const res = yield call(getItemInfo, itemId, itemType);
 
-    const { data, status } = res;
-    if (status === 200) {
+    if (res.status === 200) {
+      const data = yield res.json();
       yield put(successGetItemInfo(data));
     }
   } catch (error) {
@@ -28,8 +28,8 @@ function* fetchCollection({ itemId }) {
   try {
     const res = yield call(getCollection, itemId);
 
-    const { data, status } = res;
-    if (status === 200) {
+    if (res.status === 200) {
+      const data = yield res.json();
       const resData = { results: data.parts };
       yield put(successGetCollection(resData));
     }

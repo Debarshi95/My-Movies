@@ -1,20 +1,19 @@
-import axios from 'axios';
-
+const token = process.env.REACT_APP_API_TOKEN;
 const generateApiClient = (baseURL) => {
-  const instance = axios.create({
-    baseURL,
-    headers: {
-      'Content-Type': 'Application/json',
-    },
-  });
+  const config = {};
+  const baseUrl = baseURL;
+  config.get = async function get(path) {
+    const url = `${baseUrl}${path}`;
+    return fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'content-type': 'application/json',
+      },
+      method: 'GET',
+    });
+  };
 
-  const token = process.env.REACT_APP_API_TOKEN;
-  instance.interceptors.request.use((config) => {
-    // eslint-disable-next-line no-param-reassign
-    config.headers.Authorization = `Bearer ${token}`;
-    return config;
-  });
-  return instance;
+  return config;
 };
 
 export default generateApiClient;
