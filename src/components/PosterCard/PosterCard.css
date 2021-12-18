@@ -9,7 +9,7 @@
   overflow: hidden;
 }
 .posterCard--primary {
-  height: 15.5rem;
+  height: 17rem;
   width: 13.5rem;
 }
 .posterCard--maxWidth {
@@ -37,7 +37,6 @@
 
 @media screen and (min-width: 600px) {
   .posterCard--primary {
-    height: 17rem;
     width: 15rem;
   }
 
@@ -48,7 +47,7 @@
 
 @media screen and (min-width: 822px) {
   .posterCard--primary {
-    height: 20rem;
-    width: 17rem;
+    height: 22rem;
+    width: 18rem;
   }
 }

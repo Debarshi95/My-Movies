@@ -15,7 +15,7 @@
   border-top-left-radius: 1.5rem;
   border-bottom-left-radius: 1.5rem;
   font-family: inherit;
-  color: var(--color-text-disabled);
+  color: var(--color-bg-primary);
   flex: 1;
 }
 

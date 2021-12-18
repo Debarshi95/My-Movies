@@ -24,7 +24,7 @@
   display: flex;
   justify-content: center;
   width: 15rem;
-  height: 9rem;
+  height: 10rem;
   flex-shrink: 0;
   margin: 0 0.4rem;
   border-radius: 0.2rem;
@@ -55,6 +55,10 @@
 }
 
 @media screen and (min-width: 768px) {
+  .genres__card {
+    height: 11rem;
+    width: 17rem;
+  }
   .genres__root {
     margin: 1.6rem 0;
   }

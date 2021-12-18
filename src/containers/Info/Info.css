@@ -13,6 +13,7 @@
 .info__container {
   max-width: 94%;
   margin: 1.5rem auto;
+  width: 100%;
 }
 
 .info__seasons {
