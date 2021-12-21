@@ -15,8 +15,9 @@ function* fetchGenre({ pageCount, genre: genreName }) {
   const { id, type } = genre;
   try {
     const res = yield call(getGenreData, type, id, pageCount);
-    const { status, data } = res;
-    if (status === 200 && data) {
+
+    if (res.status === 200) {
+      const data = yield res.json();
       const resData = { type, ...data };
       yield put(successGetGenreData(resData));
     }
