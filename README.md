@@ -35,6 +35,33 @@ A ReactJS web app for movies and shows.
 - [Redux-Injectors](https://github.com/react-boilerplate/redux-injectors) - To dynamically inject reducers and sagas at different route.
 - [PropTypes](https://github.com/facebook/prop-types) - Runtime type checking for React props and similar objects.
 
+## Screenshots
+
+#### Desktop
+
+![Desktop-1](screenshots/home1.png)
+
+![Desktop-2](screenshots/home2.png)
+
+![Genre](screenshots/genre1.png)
+
+![Info](screenshots/info1.png)
+
+<br/>
+
+#### Mobile
+
+<br/>
+<div align="center">
+
+![Mobile-1](screenshots/home_mobile.png)
+
+![Mobile-2](screenshots/info_mobile.png)
+
+![Mobile-3](screenshots/genre_mobile.png)
+
+</div>
+
 ## Run Locally
 
 - Clone the project
