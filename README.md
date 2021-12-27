@@ -65,7 +65,7 @@ A ReactJS web app for movies and shows.
 ## Run Locally
 
 - Clone the project
-  `git clone https://github.com/Th3Wall/Fakeflix`
+  `git clone https://github.com/Debarshi95/My-Movies.git`
 - Go to the project directory
 - cd mymovies
 - Install dependencies
