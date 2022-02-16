@@ -5,7 +5,11 @@ function Footer() {
   return (
     <div className="footer">
       <p>
-        Made with <span>&hearts;</span> by Debarshi
+        Made with
+        <span>
+          <i className="fa fa-heart" style={{ color: 'red', padding: '0 4px' }} />
+        </span>
+        by Debarshi
       </p>
     </div>
   );

@@ -3,9 +3,8 @@
   flex: 1;
   display: flex;
   justify-content: center;
-  min-height: 30vh;
+  min-height: 25vh;
   margin-top: 2rem;
-  background-color: rgba(24, 24, 24, 0.05);
 }
 
 .footer > p {
