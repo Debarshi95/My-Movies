@@ -5,6 +5,7 @@ import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import routeConfig from '../../utils/routeConfig';
 import Loader from '../Loader/Loader';
 import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer';
 import './App.css';
 
 function App({ history }) {
@@ -22,6 +23,7 @@ function App({ history }) {
             </Switch>
           </Suspense>
         </Router>
+        <Footer />
       </ErrorBoundary>
     </div>
   );
